@@ -44,14 +44,5 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
-//        viewModel.getGameById(3498).observe(this) {
-//            when(it) {
-//                is Resource.Error -> binding.sample.text = "error"
-//                is Resource.Loading -> binding.sample.text = "loading"
-//                is Resource.Success -> binding.sample.text = it.data?.name
-//            }
-//            Log.d("gameDetail",it::class.java.simpleName)
-//        }
     }
 }

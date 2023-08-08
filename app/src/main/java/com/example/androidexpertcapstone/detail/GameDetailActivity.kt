@@ -25,19 +25,19 @@ class GameDetailActivity : AppCompatActivity() {
 
         val gameId = intent.getIntExtra(GamesAdapter.KEY_GAME_ID,0)
 
-//        viewModels.getGameById(gameId).observe(this){
-//            when(it) {
-//                is Resource.Error -> {
-//                    Toast.makeText(this, "Failed to get data",Toast.LENGTH_SHORT).show()
-//                }
-//                is Resource.Loading -> {
-//                    Log.d("gameDetailStatus","loading")
-//                }
-//                is Resource.Success -> {
-//                    it.data?.let { gameDetail -> setGameDetail(gameDetail) }
-//                }
-//            }
-//        }
+        viewModels.getGameById(gameId).observe(this){
+            when(it) {
+                is Resource.Error -> {
+                    Toast.makeText(this, "Failed to get data",Toast.LENGTH_SHORT).show()
+                }
+                is Resource.Loading -> {
+                    Log.d("gameDetailStatus","loading")
+                }
+                is Resource.Success -> {
+                    it.data?.let { gameDetail -> setGameDetail(gameDetail) }
+                }
+            }
+        }
     }
 
     private fun setGameDetail(game: GameDetail) {

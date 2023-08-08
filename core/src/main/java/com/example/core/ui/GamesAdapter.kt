@@ -1,5 +1,6 @@
 package com.example.core.ui
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -15,9 +16,9 @@ class GamesAdapter(private val games: List<Game>): RecyclerView.Adapter<GamesAda
             binding.tvGameName.text = game.name
             binding.root.setOnClickListener {
                 //goto detail activity and bring game id
-//                val intent = Intent(binding.root.context,GameDetailActivity::class.java)
-//                intent.putExtra(KEY_GAME_ID,game.id)
-//                binding.root.context.startActivity(intent)
+                val intent = Intent(binding.root.context,Class.forName("com.example.androidexpertcapstone.detail.GameDetailActivity"))
+                intent.putExtra(KEY_GAME_ID,game.id)
+                binding.root.context.startActivity(intent)
             }
         }
     }

@@ -8,5 +8,5 @@ import javax.inject.Inject
 
 @HiltViewModel
 class GameDetailViewModel @Inject constructor(private val gameUseCase: GameUseCase): ViewModel() {
-//    fun getGameById(gameId: Int) = gameUseCase.getGameById(gameId).toLiveData()
+    fun getGameById(gameId: Int) = gameUseCase.getGameById(gameId).toLiveData()
 }
