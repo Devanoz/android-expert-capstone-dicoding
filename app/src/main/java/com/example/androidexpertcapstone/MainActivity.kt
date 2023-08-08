@@ -1,16 +1,15 @@
 package com.example.androidexpertcapstone
 
-import android.graphics.drawable.GradientDrawable.Orientation
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.androidexpertcapstone.core.data.Resource
-import com.example.androidexpertcapstone.core.ui.GamesAdapter
 import com.example.androidexpertcapstone.databinding.ActivityMainBinding
+import com.example.core.data.Resource
+import com.example.core.ui.GamesAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

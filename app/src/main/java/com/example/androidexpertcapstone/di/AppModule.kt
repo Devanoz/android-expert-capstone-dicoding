@@ -1,7 +1,7 @@
 package com.example.androidexpertcapstone.di
 
-import com.example.androidexpertcapstone.core.domain.usecase.GameUseCase
-import com.example.androidexpertcapstone.core.domain.usecase.GamesInteractor
+import com.example.core.domain.usecase.GameUseCase
+import com.example.core.domain.usecase.GamesInteractor
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
