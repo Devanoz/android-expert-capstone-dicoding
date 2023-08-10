@@ -1,0 +1,2 @@
+int id rv_favourite_games 0x7e010000
+int layout activity_favourite 0x7e020000
