@@ -58,7 +58,7 @@ object DataMapper {
             metacritic = input.metacritic,
             released = input.released,
             backgroundImage = input.backgroundImage,
-            description = input.backgroundImage
+            description = input.description
         )
 
     fun mapGameDetailEntityToDomain(input: GameDetailEntity): GameDetail =
@@ -68,7 +68,7 @@ object DataMapper {
             metacritic = input.metacritic,
             released = input.released,
             backgroundImage = input.backgroundImage,
-            description = input.backgroundImage
+            description = input.description
         )
 
     fun mapResponseToGameDetailEntity(input: GameDetailResponse): GameDetailEntity =

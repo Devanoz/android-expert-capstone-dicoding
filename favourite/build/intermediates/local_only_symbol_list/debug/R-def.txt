@@ -1,4 +1,0 @@
-R_DEF: Internal format may change without notice
-local
-id rv_favourite_games
-layout activity_favourite

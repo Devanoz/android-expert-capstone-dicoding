@@ -1,3 +1,0 @@
-com.example.favourite.test
-style WhiteBackgroundDialogTheme
-style WhiteBackgroundTheme

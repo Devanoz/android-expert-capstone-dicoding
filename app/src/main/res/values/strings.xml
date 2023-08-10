@@ -2,4 +2,5 @@
     <string name="app_name">AndroidExpertCapstone</string>
     <string name="search">Search</string>
     <string name="favorite">favorite</string>
+    <string name="title_favourite">Favourite</string>
 </resources>

@@ -64,7 +64,7 @@ class GameRepository @Inject constructor(
             .subscribeOn(Schedulers.io())
             .subscribe({ gameEntity: GameEntity ->
                 if(gameEntity.fkGameDetail == null) {
-                    remoteDataSource.getGameDetailById(gameId).subscribeOn(Schedulers.io()).subscribe { gameDetailResponse ->
+                    remoteDataSource.getGameDetailById(gameId).subscribeOn(Schedulers.io()).startWith(ApiResponse.Empty).subscribe { gameDetailResponse ->
                         when(gameDetailResponse) {
                             ApiResponse.Empty -> {
                                 result.onNext(Resource.Loading())

@@ -3,6 +3,7 @@ package com.example.androidexpertcapstone.detail
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
@@ -27,21 +28,28 @@ class GameDetailActivity : AppCompatActivity() {
         binding = ActivityGameDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        gameId = intent.getIntExtra(GamesAdapter.KEY_GAME_ID,0)
-        isFavorite = intent.getBooleanExtra(GamesAdapter.KEY_FAVOURITE,false)
+        gameId = intent.getIntExtra(GamesAdapter.KEY_GAME_ID, 0)
+        isFavorite = intent.getBooleanExtra(GamesAdapter.KEY_FAVOURITE, false)
 
         setFabFavourite(isFavorite)
 
-        viewModels.getGameById(gameId).observe(this){
-            when(it) {
+        viewModels.getGameById(gameId).observe(this) {
+            when (it) {
                 is Resource.Error -> {
-                    Toast.makeText(this, "Failed to get data",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Failed to get data", Toast.LENGTH_SHORT).show()
+                    setLoadingState(false)
                 }
+
                 is Resource.Loading -> {
-                    Log.d("gameDetailStatus","loading")
+                    Log.d("gameDetailStatus", "loading")
+                    setLoadingState(true)
                 }
+
                 is Resource.Success -> {
-                    it.data?.let { gameDetail -> setGameDetail(gameDetail) }
+                    it.data?.let { gameDetail ->
+                        setGameDetail(gameDetail)
+                        setLoadingState(false)
+                    }
                 }
 
                 else -> {}
@@ -50,21 +58,42 @@ class GameDetailActivity : AppCompatActivity() {
 
         binding.fabFavourite.setOnClickListener {
             isFavorite = !isFavorite
-            viewModels.setFavourite(gameId,isFavorite)
+            viewModels.setFavourite(gameId, isFavorite)
             setFabFavourite(isFavorite)
+        }
+    }
+
+    private fun setLoadingState(isLoading: Boolean) {
+        if (isLoading) {
+            binding.loadingStatus.visibility = View.VISIBLE
+        } else {
+            binding.loadingStatus.visibility = View.INVISIBLE
         }
     }
 
     private fun setGameDetail(game: GameDetail) {
         Glide.with(this).load(game.backgroundImage).into(binding.imvGameBackground)
         binding.tvGameName.text = game.name
+        binding.tvReleased.text = "Released : ${game.released}"
+        binding.tvMetacritic.text = "Metacritic: ${game.metacritic}"
+        binding.tvDescription.text = game.description
     }
 
     private fun setFabFavourite(isFavorite: Boolean) {
-        if(isFavorite) {
-            binding.fabFavourite.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_faforite_enabled))
-        }else {
-            binding.fabFavourite.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_favorite_disabled))
+        if (isFavorite) {
+            binding.fabFavourite.setImageDrawable(
+                ContextCompat.getDrawable(
+                    this,
+                    R.drawable.ic_faforite_enabled
+                )
+            )
+        } else {
+            binding.fabFavourite.setImageDrawable(
+                ContextCompat.getDrawable(
+                    this,
+                    R.drawable.ic_favorite_disabled
+                )
+            )
         }
     }
 }

@@ -1,1 +1,0 @@
-:favourite::debug;Capability: group='AndroidExpertCapstone', name='favourite'

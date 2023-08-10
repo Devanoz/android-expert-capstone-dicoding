@@ -35,6 +35,7 @@ class MainViewModel @Inject constructor (private val gamesUseCase: GameUseCase) 
     @SuppressLint("CheckResult")
     private fun loadAllGames() {
         gamesUseCase.getAllGames().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+            .startWith(Resource.Loading())
             .subscribe {
                 _games.value = it
             }
