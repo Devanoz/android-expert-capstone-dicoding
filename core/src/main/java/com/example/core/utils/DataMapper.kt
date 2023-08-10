@@ -35,7 +35,7 @@ object DataMapper {
                 released = it.released,
                 backgroundImageUrl = it.backgroundImageUrl,
                 descriptionRaw = it.backgroundImageUrl,
-                isFavorite = false
+                isFavorite = it.isFavorite
             )
         }
 

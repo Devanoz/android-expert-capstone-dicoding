@@ -9,6 +9,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 
+@SuppressLint("CheckResult")
 abstract class NetworkBoundResource<ResultType, RequestType> {
 
     private val result = PublishSubject.create<Resource<ResultType>>()
@@ -20,16 +21,13 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
         val db = dbSource
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .take(1)
             .subscribe { value ->
-                dbSource.unsubscribeOn(Schedulers.io())
                 if (shouldFetch(value)) {
                     fetchFromNetwork()
                 } else {
                     result.onNext(Resource.Success(value))
                 }
             }
-        mCompositeDisposable.add(db)
     }
 
     protected open fun onFetchFailed() {}

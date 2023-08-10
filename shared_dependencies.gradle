@@ -18,6 +18,7 @@ dependencies {
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
     implementation "androidx.room:room-rxjava2:$room_version"
     implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:$lifecycle_version"
+    implementation "com.jakewharton.rxbinding2:rxbinding:2.0.0"
 
     //hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"

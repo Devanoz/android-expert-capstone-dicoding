@@ -9,4 +9,8 @@ import javax.inject.Inject
 @HiltViewModel
 class GameDetailViewModel @Inject constructor(private val gameUseCase: GameUseCase): ViewModel() {
     fun getGameById(gameId: Int) = gameUseCase.getGameById(gameId).toLiveData()
+
+    fun setFavourite(gameId: Int,isFavorite: Boolean) {
+        gameUseCase.setFavouriteGames(gameId,isFavorite)
+    }
 }

@@ -52,9 +52,8 @@ class GameRepository @Inject constructor(
         return localDataSource.getFavouriteGames().map { DataMapper.mapEntitiesToDomain(it) }
     }
 
-    override fun setFavouriteGames(game: Game, isFavorite: Boolean) {
-        val gameEntity = DataMapper.mapDomainToEntity(game)
-        appExecutors.diskIO().execute { localDataSource.setFavourite(gameEntity, isFavorite) }
+    override fun setFavouriteGames(gameId: Int, isFavorite: Boolean) {
+        localDataSource.setFavourite(gameId,isFavorite).subscribeOn(Schedulers.io()).subscribe()
     }
 
     @SuppressLint("CheckResult")
@@ -92,5 +91,10 @@ class GameRepository @Inject constructor(
             })
         result.doOnComplete { disposable.dispose() }
         return result.toFlowable(BackpressureStrategy.BUFFER)
+    }
+
+    override fun searchGameByName(query: String): Flowable<List<Game>> {
+        val newQuery = "%$query%"
+        return localDataSource.searchGameByName(newQuery).map { DataMapper.mapEntitiesToDomain(it) }
     }
 }

@@ -16,11 +16,15 @@ class GamesInteractor @Inject constructor (private val gameRepository: IGamesRep
         return gameRepository.getAllFavouriteGames()
     }
 
-    override fun setFavouriteGames(game: Game, isFavorite: Boolean) {
-        gameRepository.setFavouriteGames(game,isFavorite)
+    override fun setFavouriteGames(gameId: Int, isFavorite: Boolean) {
+        gameRepository.setFavouriteGames(gameId,isFavorite)
     }
 
     override fun getGameById(gameId: Int): Flowable<Resource<GameDetail>> {
         return gameRepository.getGameById(gameId)
+    }
+
+    override fun searchGameByName(query: String): Flowable<List<Game>> {
+        return gameRepository.searchGameByName(query)
     }
 }

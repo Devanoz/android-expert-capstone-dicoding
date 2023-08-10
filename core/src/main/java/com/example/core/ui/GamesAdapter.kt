@@ -18,6 +18,7 @@ class GamesAdapter(private val games: List<Game>): RecyclerView.Adapter<GamesAda
                 //goto detail activity and bring game id
                 val intent = Intent(binding.root.context,Class.forName("com.example.androidexpertcapstone.detail.GameDetailActivity"))
                 intent.putExtra(KEY_GAME_ID,game.id)
+                intent.putExtra(KEY_FAVOURITE,game.isFavorite)
                 binding.root.context.startActivity(intent)
             }
         }
@@ -36,5 +37,6 @@ class GamesAdapter(private val games: List<Game>): RecyclerView.Adapter<GamesAda
 
     companion object {
         const val KEY_GAME_ID = "keyGameId"
+        const val KEY_FAVOURITE = "keyFavourite"
     }
 }

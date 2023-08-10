@@ -25,6 +25,9 @@ interface GamesDao {
     @Update
     fun updateFavouriteGame(game: GameEntity): Completable
 
+    @Query("UPDATE games SET is_favorite =:isFavorite WHERE game_id =:gameId")
+    fun updateGamesFavoriteStatusById(gameId: Int, isFavorite: Boolean): Completable
+
     @Query("SELECT * FROM games WHERE game_id=:gameId")
     fun getGameById(gameId: Int): Flowable<GameEntity>
 
@@ -33,4 +36,7 @@ interface GamesDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertGameDetail(gameDetailEntity: GameDetailEntity): Completable
+
+    @Query("SELECT * FROM games where name LIKE LOWER(:name)")
+    fun searchGameByName(name: String): Flowable<List<GameEntity>>
 }

@@ -11,7 +11,9 @@ interface IGamesRepository {
 
     fun getAllFavouriteGames(): Flowable<List<Game>>
 
-    fun setFavouriteGames(game: Game, isFavorite: Boolean)
+    fun setFavouriteGames(gameId: Int, isFavorite: Boolean)
 
     fun getGameById(gameId: Int): Flowable<Resource<GameDetail>>
+
+    fun searchGameByName(query: String): Flowable<List<Game>>
 }
