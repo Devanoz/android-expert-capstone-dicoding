@@ -37,6 +37,6 @@ interface GamesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertGameDetail(gameDetailEntity: GameDetailEntity): Completable
 
-    @Query("SELECT * FROM games where name LIKE LOWER(:name)")
+    @Query("SELECT * FROM games where name LIKE :name")
     fun searchGameByName(name: String): Flowable<List<GameEntity>>
 }
