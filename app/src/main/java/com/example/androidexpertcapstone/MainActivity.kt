@@ -19,10 +19,6 @@ import com.example.core.ui.GamesAdapter
 import com.google.android.material.appbar.MaterialToolbar
 import com.jakewharton.rxbinding2.widget.RxSearchView
 import dagger.hilt.android.AndroidEntryPoint
-import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
@@ -33,7 +29,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var rvGames: RecyclerView
 
     private lateinit var topAppBar: MaterialToolbar
-    private lateinit var observable: Disposable
 
     @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,10 +64,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setLoadingState(isVisible : Boolean) {
-        if(isVisible) {
+    private fun setLoadingState(isVisible: Boolean) {
+        if (isVisible) {
             binding.loadingIndicator.visibility = View.VISIBLE
-        }else {
+        } else {
             binding.loadingIndicator.visibility = View.INVISIBLE
         }
     }
@@ -83,18 +78,14 @@ class MainActivity : AppCompatActivity() {
         val searchItem = topAppBar.menu.findItem(R.id.search_view)
         val searchView = searchItem.actionView as SearchView
 
-        val searchViewObservable= RxSearchView.queryTextChanges(searchView)
-            .observeOn(Schedulers.io())
-            .subscribeOn(AndroidSchedulers.mainThread())
+         RxSearchView.queryTextChanges(searchView)
             .debounce(100, TimeUnit.MILLISECONDS)
             .distinctUntilChanged()
-
-        observable = searchViewObservable.subscribe {
-            Log.d("searchViewItem", it.toString())
-            val query = it.toString()
-            viewModel.searchGameByName(query)
-        }
-
+            .subscribe {
+                Log.d("searchViewItem", it.toString())
+                val query = it.toString()
+                viewModel.searchGameByName(query)
+            }
         return true
     }
 
@@ -110,8 +101,4 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        observable.dispose()
-    }
 }

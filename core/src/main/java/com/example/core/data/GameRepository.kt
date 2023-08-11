@@ -9,7 +9,6 @@ import com.example.core.data.source.remote.response.GameItem
 import com.example.core.domain.model.Game
 import com.example.core.domain.model.GameDetail
 import com.example.core.domain.repository.IGamesRepository
-import com.example.core.utils.AppExecutors
 import com.example.core.utils.DataMapper
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
@@ -23,7 +22,6 @@ import javax.inject.Singleton
 class GameRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource,
-    private val appExecutors: AppExecutors
 ) : IGamesRepository {
     override fun getAllGames(): Flowable<Resource<List<Game>>> =
         object : NetworkBoundResource<List<Game>, List<GameItem>>() {

@@ -39,16 +39,6 @@ object DataMapper {
             )
         }
 
-    fun mapDomainToEntity(game: Game) = GameEntity(
-        id = game.id,
-        name = game.name,
-        fkGameDetail = null,
-        metacriticScore = game.metacriticScore,
-        released = game.released,
-        backgroundImageUrl = game.backgroundImageUrl,
-        descriptionRaw = "",
-        isFavorite = false
-    )
 
 
     fun mapResponseToGameDetailDomain(input: GameDetailResponse): GameDetail =
