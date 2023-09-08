@@ -1,6 +1,5 @@
 package com.example.core.data.source.local.entity
 
-import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -10,7 +9,6 @@ import androidx.room.PrimaryKey
 data class GameEntity (
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo("game_id")
-    @NonNull
     var id: Int,
     @ColumnInfo("fk_game_detail")
     var fkGameDetail: Int?,
