@@ -61,6 +61,10 @@ class GameDetailActivity : AppCompatActivity() {
             viewModels.setFavourite(gameId, isFavorite)
             setFabFavourite(isFavorite)
         }
+
+        binding.cvGameTrailer.setOnClickListener {
+
+        }
     }
 
     private fun setLoadingState(isLoading: Boolean) {

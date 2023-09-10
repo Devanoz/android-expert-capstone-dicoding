@@ -30,4 +30,11 @@ dependencies {
     //leak canary
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.12'
 
+    //lottie
+    implementation "com.airbnb.android:lottie:$lottie_version"
+
+    //--------------test------------
+    //mockito
+    testImplementation "org.mockito:mockito-core:$mockito_version"
+
 }

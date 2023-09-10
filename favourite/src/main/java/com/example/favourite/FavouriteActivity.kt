@@ -42,14 +42,14 @@ class FavouriteActivity : AppCompatActivity() {
         rvFavourite = binding.rvFavourite
         rvFavourite.layoutManager = LinearLayoutManager(this)
 
-        binding.tvEmptyStatus.visibility = View.INVISIBLE
+        binding.emptyAnimation.visibility = View.INVISIBLE
         viewModel.favouriteGames.observe(this) {
             Log.d("FavouriteActivityXX",it.toString())
             if(it.isEmpty()){
-                binding.tvEmptyStatus.visibility = View.VISIBLE
+                binding.emptyAnimation.visibility = View.VISIBLE
                 rvFavourite.adapter = FavouriteGamesAdapter(it) { _, _ -> }
             }else {
-                binding.tvEmptyStatus.visibility = View.INVISIBLE
+                binding.emptyAnimation.visibility = View.INVISIBLE
                 rvFavourite.adapter = FavouriteGamesAdapter(it) { gameId,isFavourite ->
                     viewModel.setFavourite(gameId,isFavourite)
                 }

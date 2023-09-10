@@ -44,6 +44,9 @@ android {
 
 dependencies {
     implementation project(path: ':core')
+    testImplementation 'junit:junit:4.12'
+
+
 }
 
 kapt {
